@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Appolo\BackOfficeBundle\Entity\Commande" table="commande">
+    <id name="idcommande" type="integer" column="idCommande">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nomdestinataire" type="text" column="nomDestinataire" nullable="true"/>
+    <field name="prenomdestinataire" type="text" column="prenomDestinataire" nullable="true"/>
+  </entity>
+</doctrine-mapping>

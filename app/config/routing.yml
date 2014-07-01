@@ -1,0 +1,15 @@
+appolo_back_office:
+    resource: "@AppoloBackOfficeBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+appolo_front_borne:
+    resource: "@AppoloFrontBorneBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+appolo_front_vitrine:
+    resource: "@AppoloFrontVitrineBundle/Controller/"
+    type:     annotation
+    prefix:   /
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Appolo\BackOfficeBundle\Entity\Passercommande" table="passercommande">
+    <indexes>
+      <index name="FK_PasserCommande_idCommande" columns="idCommande"/>
+      <index name="FK_PasserCommande_idPanier" columns="idPanier"/>
+      <index name="IDX_3EF6F3DC5D419CCB" columns="idUtilisateur"/>
+    </indexes>
+    <id name="idpanier" association-key="true"/>
+    <id name="idcommande" association-key="true"/>
+    <id name="idutilisateur" association-key="true"/>
+    <field name="datecommande" type="datetime" column="dateCommande" nullable="true"/>
+    <one-to-one field="idutilisateur" target-entity="Utilisateur">
+      <join-columns>
+        <join-column name="idUtilisateur" referenced-column-name="idUtilisateur"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-one field="idcommande" target-entity="Commande">
+      <join-columns>
+        <join-column name="idCommande" referenced-column-name="idCommande"/>
+      </join-columns>
+    </one-to-one>
+    <one-to-one field="idpanier" target-entity="Panier">
+      <join-columns>
+        <join-column name="idPanier" referenced-column-name="idPanier"/>
+      </join-columns>
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

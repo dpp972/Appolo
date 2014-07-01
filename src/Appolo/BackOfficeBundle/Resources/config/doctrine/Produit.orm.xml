@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Appolo\BackOfficeBundle\Entity\Produit" table="produit">
+    <id name="idproduit" type="integer" column="idProduit">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="refproduit" type="text" column="refProduit" nullable="true"/>
+    <many-to-many field="idpanier" target-entity="Panier" mapped-by="idproduit"/>
+    <many-to-many field="idmdlp" target-entity="Modeleproduit" mapped-by="idproduit"/>
+  </entity>
+</doctrine-mapping>
