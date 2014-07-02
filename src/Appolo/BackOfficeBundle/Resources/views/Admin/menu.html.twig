@@ -1,0 +1,126 @@
+<a href="#"><strong><i class="glyphicon glyphicon-wrench"></i> Gestion</strong></a>  
+      
+      <hr>
+      
+      <ul class="list-unstyled">
+        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu2">
+          <h5>Catégorie <i class="glyphicon glyphicon-chevron-right"></i></h5>
+          </a>
+            <ul class="list-unstyled collapse" id="menu2">
+                <li><a href="{{ path('choice', {'type': 'categorie'}) }}">Voir toutes les  catégorie <span class="badge badge-info">4</span></a></li></a>
+                </li>
+                <li><a href="{{ path('add', {'type': 'categorie'}) }}">Ajouter une catégorie</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-header">
+        <a href="#" data-toggle="collapse" data-target="#menu3">
+          <h5>Produit <i class="glyphicon glyphicon-chevron-right"></i></h5>
+          </a>
+            <ul class="list-unstyled collapse" id="menu3">
+                <li><a href="{{ path('choice', {'type': 'produit'}) }}">Voir toutes les  produits <span class="badge badge-info">4</span></a></li></a>
+                </li>
+                <li><a href="{{ path('add', {'type': 'produit'}) }}"><i class="glyphicon glyphicon-circle"></i> Ajouter des Produits</a></li>
+            </ul>
+        </li>
+        
+        <li class="nav-header">
+        <a href="#" data-toggle="collapse" data-target="#menu31">
+          <h5>Modele de Produit <i class="glyphicon glyphicon-chevron-right"></i></h5>
+          </a>
+            <ul class="list-unstyled collapse" id="menu31">
+                <li><a href="{{ path('choice', {'type': 'modele'}) }}">Voir toutes les  modèles de produit <span class="badge badge-info">4</span></a></li></a>
+                </li>
+                <li><a href="{{ path('add', {'type': 'modele'}) }}"><i class="glyphicon glyphicon-circle"></i> Ajouter des modèles de produit</a></li>
+            </ul>
+        </li>
+        
+        <li class="nav-header">
+        <a href="#" data-toggle="collapse" data-target="#menu4">
+          <h5>Utilisateurs <i class="glyphicon glyphicon-chevron-right"></i></h5>
+          </a>
+        
+            <ul class="list-unstyled collapse" id="menu4">
+                 <li><a href="{{ path('choice', {'type': 'utilisateur'}) }}">Voir toutes les  Utilisateurs <span class="badge badge-info">4</span></a></li></a>
+                </li>
+                <li><a href="{{ path('add', {'type': 'utilisateur'}) }}"><i class="glyphicon glyphicon-circle"></i> Ajouter des Utilisateurs</a></li>
+            </ul>
+        </li>
+        
+        <li class="nav-header">
+        <a href="#" data-toggle="collapse" data-target="#menu5">
+          <h5>Roles utilisateurs <i class="glyphicon glyphicon-chevron-right"></i></h5>
+          </a>
+        
+            <ul class="list-unstyled collapse" id="menu5">
+                <li><a href="{{ path('choice', {'type': 'role'}) }}"><i class="glyphicon glyphicon-circle"></i> Voir les roles utilisateurs</a></li>
+                <li><a href="{{ path('add', {'type': 'role'}) }}"><i class="glyphicon glyphicon-circle"></i> Ajouter des roles utilisateurs</a></li>
+            </ul>
+        </li>
+        
+        <li class="nav-header">
+        <a href="#" data-toggle="collapse" data-target="#menu6">
+          <h5>Information Boutique <i class="glyphicon glyphicon-chevron-right"></i></h5>
+          </a>
+        
+            <ul class="list-unstyled collapse" id="menu6">
+                <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Voir les informations de la boutique</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Modifier les informations de la boutique</a></li>
+                <li><a href="{{ path('add', {'type': 'boutique'}) }}"><i class="glyphicon glyphicon-circle"></i> Ajouter les informations de la boutique</a></li>
+            </ul>
+        </li>
+      </ul>
+           
+      <hr>
+      
+      <a href="#"><strong><i class="glyphicon glyphicon-link"></i> Ressources</strong></a>  
+      
+      <hr>
+      
+      <ul class="list-unstyled">
+        <li class="nav-header"> <a href="#" data-toggle="collapse" data-target="#menu7">
+          <h5>Logo <i class="glyphicon glyphicon-chevron-right"></i></h5>
+          </a>
+            <ul class="list-unstyled collapse" id="menu7">
+                <li><a href="#">Voir le logo </a></li></a>
+                </li>
+                <li><a href="{{ path('add', {'type': 'logo'}) }}">Ajouter un logo</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-header">
+        <a href="#" data-toggle="collapse" data-target="#menu8">
+          <h5>Slider <i class="glyphicon glyphicon-chevron-right"></i></h5>
+          </a>
+            <ul class="list-unstyled collapse" id="menu8">
+                <li><a href="">Voir le slider <span class="badge badge-info">4</span></a></li></a>
+                </li>
+                <li><a href="#"><i class="glyphicon glyphicon-circle"></i> Ajouter des images au slider</a></li>
+            </ul>
+        </li>
+        
+        <li class="nav-header">
+        <a href="#" data-toggle="collapse" data-target="#menu9">
+          <h5>Texte page d'accueil <i class="glyphicon glyphicon-chevron-right"></i></h5>
+          </a>
+            <ul class="list-unstyled collapse" id="menu9">
+                <li><a href="">Voir  <span class="badge badge-info">4</span></a></li></a>
+                </li>
+                <li><a href="{{ path('add', {'type': 'accueil'}) }}"><i class="glyphicon glyphicon-circle"></i> Ajouter</a></li>
+            </ul>
+        </li>
+      </ul>
+      
+      <hr>
+      <ul class="nav nav-stacked">
+        <li class="active"><a href="http://bootply.com" title="The Bootstrap Playground" target="ext">Playground</a></li>
+        <li><a href="/tagged/bootstrap-3">Bootstrap 3</a></li>
+        <li><a href="/61518" title="Bootstrap 3 Panel">Panels</a></li>
+        <li><a href="/61521" title="Bootstrap 3 Icons">Glyphicons</a></li>
+        <li><a href="/61523" title="Bootstrap 3 ListGroup">List Groups</a></li>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="/61518" title="Bootstrap 3 Slider">Carousel</a></li>
+        <li><a href="/62603">Layout</a></li>
+      </ul>
+
+      <hr>

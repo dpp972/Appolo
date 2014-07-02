@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+{% block body %}
+<h1>{{name}}</h1>
+
+<div style="border : 1px solid black ; width : 100% ; min-height : 20px;padding: 10px; text-align: right">
+    <a class="btn btn-info" href="{{ path('export', {'type': name}) }}" title="ajouter {{name}}">Exporter</a>
+    <a class="btn btn-info" href="{{ path('add', {'type': name}) }}" title="ajouter {{name}}">Ajouter</a>
+</div>
+
+<div style="margin-top : 20px;">
+    {% if name == 'categorie' %}
+        {% include 'AppoloBackOfficeBundle:Admin:tabCategorie.html.twig' %}
+    {% endif %}
+    
+    {% if name == 'produit' %}
+        {% include 'AppoloBackOfficeBundle:Admin:tabProduit.html.twig' %}
+    {% endif %}
+    
+    {% if name == 'modele' %}
+        {% include 'AppoloBackOfficeBundle:Admin:tabModele.html.twig' %}
+    {% endif %}
+    
+    {% if name == 'utilisateur' %}
+        {% include 'AppoloBackOfficeBundle:Admin:tabUtilisateur.html.twig' %}
+    {% endif %}
+    
+    {% if name == 'role' %}
+        {% include 'AppoloBackOfficeBundle:Admin:tabRole.html.twig' %}
+    {% endif %}
+    
+    {% if name == 'boutique' %}
+        {% include 'AppoloBackOfficeBundle:Admin:tabBoutique.html.twig' %}
+    {% endif %}
+    
+{% endblock %}

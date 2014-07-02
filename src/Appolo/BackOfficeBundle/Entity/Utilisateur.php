@@ -79,9 +79,32 @@ class Utilisateur
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct(array $param)
     {
         $this->idadresse = new \Doctrine\Common\Collections\ArrayCollection();
+        foreach($param as $value){
+            switch($value['field']){
+                case 'nomutilisateur':
+                     $this->setNomutilisateur($value['field']);
+                    break;
+                
+                case 'prenomutilisateur':
+                     $this->setPrenomutilisateur($value['field']);
+                    break;
+                
+                 case 'pseudoutilisateur':
+                     $this->setPseudoutilisateur($value['field']);
+                    break;
+                
+                 case 'datenaissutilisateur':
+                     $this->setPrenomutilisateur($value['field']);
+                    break;
+                
+                
+            }
+        }
+        
+       
     }
 
 

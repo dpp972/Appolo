@@ -45,10 +45,11 @@ class Produit
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct(array $param)
     {
         $this->idpanier = new \Doctrine\Common\Collections\ArrayCollection();
         $this->idmdlp = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setRefproduit($param[0]['field']);
     }
 
 
