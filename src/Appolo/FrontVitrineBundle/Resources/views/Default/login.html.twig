@@ -1,0 +1,35 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+{% block body %} 
+<div class="container">
+        <div class="row">
+          <div class="span6 offset3">
+            <h4 class="widget-header"><i class="icon-lock"></i> Connexion</h4>
+            <div class="widget-body">
+              <div class="center-align">
+                <form class="form-horizontal form-signin-signup">
+                  <input type="text" name="email" placeholder="Email">
+                  <input type="password" name="password" placeholder="Password">
+                  <div class="remember-me">
+                    <div class="pull-left">
+                      <label class="checkbox">
+                        <input type="checkbox"> Remember me
+                      </label>
+                    </div>
+                    <div class="pull-right">
+                      <a href="#">Mot de Passe Oublie ?</a>
+                    </div>
+                    <div class="clearfix"></div>
+                  </div>
+                  <input type="submit" value="Signin" class="btn btn-primary btn-large">
+                </form>
+                <a href="signup.html" class="btn btn-large bottom-space">Inscription</a>
+             
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+ {% endblock %}
