@@ -1,0 +1,23 @@
+<div>
+    <ul>
+        <li><a href=""> Accueil </a></li>
+        <li><a href=""> Catégorie</a>
+            {% for cat in categories %}
+                <ul>
+                    <li><a href="{{cat.url}}">{{{cat.name}}</a></li>
+                </ul>
+            {% endfor %}
+        </li>
+        
+        <li><a href=""> Users</a>
+            
+        </li>
+        <li><a href=""> Produit</a>
+            {% for product in products %}
+                <ul>
+                    <li><a href="{{product.url}}">{{{product.name}}</a></li>
+                </ul>
+            {% endfor %}
+        </li>
+    </ul>
+</div>

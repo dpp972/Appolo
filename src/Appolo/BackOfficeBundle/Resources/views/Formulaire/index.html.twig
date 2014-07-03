@@ -1,0 +1,14 @@
+{% extends 'AppoloBackOfficeBundle:Default:base_bo.html.twig' %}
+
+
+{% form_theme formulaire 'AppoloBackOfficeBundle:Form:fields.html.twig' %}
+
+{% block content %}
+    <h1>{{ name }}</h1>
+
+    <div class="form-basic">
+            {{ form_start(formulaire) }}
+            {{ form_errors(formulaire) }}
+            {{ form_end(formulaire) }}
+    </div>
+{% endblock %}
