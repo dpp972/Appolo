@@ -136,6 +136,29 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
         }
 
         if (0 === strpos($pathinfo, '/admin')) {
+            if (0 === strpos($pathinfo, '/admin/admin')) {
+                // base
+                if ($pathinfo === '/admin/admin') {
+                    return array (  '_controller' => 'Appolo\\BackOfficeBundle\\Controller\\AdminController::indexAction',  '_route' => 'base',);
+                }
+
+                // choice
+                if (preg_match('#^/admin/admin/(?P<type>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'choice')), array (  '_controller' => 'Appolo\\BackOfficeBundle\\Controller\\AdminController::listAction',));
+                }
+
+                // export
+                if (preg_match('#^/admin/admin/(?P<type>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'export')), array (  '_controller' => 'Appolo\\BackOfficeBundle\\Controller\\AdminController::exportAction',));
+                }
+
+                // add
+                if (0 === strpos($pathinfo, '/admin/admin/add') && preg_match('#^/admin/admin/add/(?P<type>[^/]++)$#s', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, array('_route' => 'add')), array (  '_controller' => 'Appolo\\BackOfficeBundle\\Controller\\AdminController::addAction',));
+                }
+
+            }
+
             // accueil
             if (0 === strpos($pathinfo, '/admin/hello') && preg_match('#^/admin/hello/(?P<name>[^/]++)$#s', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'accueil')), array (  '_controller' => 'Appolo\\BackOfficeBundle\\Controller\\DefaultController::indexAction',));
