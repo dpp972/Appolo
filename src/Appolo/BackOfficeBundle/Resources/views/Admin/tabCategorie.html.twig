@@ -9,18 +9,16 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td><input type="checkbox" name="" /></td>
-            <td>1</td>
-            <td>Some</td>
-            <td><a href="#">editer</a> | <a href="#">supprimer</a></td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="" /></td>
-            <td>2</td>
-            <td>Joe</td>
-            <td><a href="#">editer</a> | <a href="#">supprimer</a></td>
-        </tr>
+        {% for cat in items %} 
+            <tr>
+                <td><input type="checkbox" name="" /></td>
+                <td>{{cat.idCategorie}}</td>
+                <td>{{cat.libelleCategorie}}</td>
+                <td><a href="{{ path('get', {'type': 'categorie','id' : cat.idCategorie }) }}">editer</a> |
+                    <a href="{{ path('delete', {'type': 'categorie','id' : cat.idCategorie }) }}">supprimer</a></td>
+            </tr>
+        {% endfor %}
+        
     </tbody>
 </table>
 </div>
