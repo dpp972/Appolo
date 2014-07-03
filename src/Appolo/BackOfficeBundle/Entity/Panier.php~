@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Panier
  *
- * @ORM\Table(name="panier")
+ * @ORM\Table(name="panier", indexes={@ORM\Index(name="FK_Panier_idUser", columns={"idUser"})})
  * @ORM\Entity
  */
 class Panier
@@ -15,16 +15,16 @@ class Panier
     /**
      * @var string
      *
-     * @ORM\Column(name="ipPanier", type="text", nullable=true)
+     * @ORM\Column(name="ipUserPanier", type="text", nullable=true)
      */
-    private $ippanier;
+    private $ipuserpanier;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="numSession", type="integer", nullable=true)
+     * @ORM\Column(name="numSessPanier", type="text", nullable=true)
      */
-    private $numsession;
+    private $numsesspanier;
 
     /**
      * @var integer
@@ -34,6 +34,16 @@ class Panier
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idpanier;
+
+    /**
+     * @var \Appolo\BackOfficeBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="idUser")
+     * })
+     */
+    private $iduser;
 
     /**
      * @var \Doctrine\Common\Collections\Collection

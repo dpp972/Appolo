@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="Appolo\BackOfficeBundle\Entity\Typevoie" table="typevoie">
-    <indexes>
-      <index name="FK_TypeVoie_idAdresse" columns="idAdresse"/>
-    </indexes>
-    <id name="idtype" type="integer" column="idType">
+    <id name="idtypev" type="integer" column="idTypeV">
       <generator strategy="IDENTITY"/>
     </id>
     <field name="libelletype" type="integer" column="libelleType" nullable="true"/>
-    <many-to-one field="idadresse" target-entity="Adresse">
-      <join-columns>
-        <join-column name="idAdresse" referenced-column-name="idAdresse"/>
-      </join-columns>
-    </many-to-one>
   </entity>
 </doctrine-mapping>

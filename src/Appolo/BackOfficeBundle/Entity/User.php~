@@ -1,0 +1,132 @@
+<?php
+
+namespace Appolo\BackOfficeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="user", indexes={@ORM\Index(name="FK_User_idAdresseLiv", columns={"idAdresseLiv"}), @ORM\Index(name="FK_User_idPanier", columns={"idPanier"})})
+ * @ORM\Entity
+ */
+class User
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nomUser", type="text", nullable=true)
+     */
+    private $nomuser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenomUser", type="text", nullable=true)
+     */
+    private $prenomuser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="identifiantUser", type="text", nullable=true)
+     */
+    private $identifiantuser;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateNaissUser", type="date", nullable=true)
+     */
+    private $datenaissuser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="passwordUser", type="text", nullable=true)
+     */
+    private $passworduser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="saltUser", type="text", nullable=true)
+     */
+    private $saltuser;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="emailUser", type="text", nullable=true)
+     */
+    private $emailuser;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idUser", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $iduser;
+
+    /**
+     * @var \Appolo\BackOfficeBundle\Entity\Panier
+     *
+     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\Panier")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idPanier", referencedColumnName="idPanier")
+     * })
+     */
+    private $idpanier;
+
+    /**
+     * @var \Appolo\BackOfficeBundle\Entity\Adresse
+     *
+     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\Adresse")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idAdresseLiv", referencedColumnName="idAdresse")
+     * })
+     */
+    private $idadresseliv;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Appolo\BackOfficeBundle\Entity\Commande", inversedBy="iduser")
+     * @ORM\JoinTable(name="passercommande",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="idUser", referencedColumnName="idUser")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="idCmd", referencedColumnName="idCmd")
+     *   }
+     * )
+     */
+    private $idcmd;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Appolo\BackOfficeBundle\Entity\Roleuser", inversedBy="iduser")
+     * @ORM\JoinTable(name="avoirrole",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="idUser", referencedColumnName="idUser")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="idRoleUs", referencedColumnName="idRoleUs")
+     *   }
+     * )
+     */
+    private $idroleus;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idcmd = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idroleus = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

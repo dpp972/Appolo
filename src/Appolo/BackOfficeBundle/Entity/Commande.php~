@@ -7,33 +7,60 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Commande
  *
- * @ORM\Table(name="commande")
+ * @ORM\Table(name="commande", indexes={@ORM\Index(name="FK_Commande_idAdresse", columns={"idAdresse"}), @ORM\Index(name="FK_Commande_idPanier", columns={"idPanier"})})
  * @ORM\Entity
  */
 class Commande
 {
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="nomDestinataire", type="text", nullable=true)
+     * @ORM\Column(name="dateCmd", type="date", nullable=false)
      */
-    private $nomdestinataire;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prenomDestinataire", type="text", nullable=true)
-     */
-    private $prenomdestinataire;
+    private $datecmd;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="idCommande", type="integer")
+     * @ORM\Column(name="idCmd", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idcommande;
+    private $idcmd;
 
+    /**
+     * @var \Appolo\BackOfficeBundle\Entity\Panier
+     *
+     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\Panier")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idPanier", referencedColumnName="idPanier")
+     * })
+     */
+    private $idpanier;
+
+    /**
+     * @var \Appolo\BackOfficeBundle\Entity\Adresse
+     *
+     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\Adresse")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idAdresse", referencedColumnName="idAdresse")
+     * })
+     */
+    private $idadresse;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Appolo\BackOfficeBundle\Entity\User", mappedBy="idcmd")
+     */
+    private $iduser;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->iduser = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 }

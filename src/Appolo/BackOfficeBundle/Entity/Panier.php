@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Panier
  *
- * @ORM\Table(name="panier")
+ * @ORM\Table(name="panier", indexes={@ORM\Index(name="FK_Panier_idUser", columns={"idUser"})})
  * @ORM\Entity
  */
 class Panier
@@ -15,16 +15,16 @@ class Panier
     /**
      * @var string
      *
-     * @ORM\Column(name="ipPanier", type="text", nullable=true)
+     * @ORM\Column(name="ipUserPanier", type="text", nullable=true)
      */
-    private $ippanier;
+    private $ipuserpanier;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="numSession", type="integer", nullable=true)
+     * @ORM\Column(name="numSessPanier", type="text", nullable=true)
      */
-    private $numsession;
+    private $numsesspanier;
 
     /**
      * @var integer
@@ -34,6 +34,16 @@ class Panier
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idpanier;
+
+    /**
+     * @var \Appolo\BackOfficeBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="idUser")
+     * })
+     */
+    private $iduser;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -60,49 +70,49 @@ class Panier
 
 
     /**
-     * Set ippanier
+     * Set ipuserpanier
      *
-     * @param string $ippanier
+     * @param string $ipuserpanier
      * @return Panier
      */
-    public function setIppanier($ippanier)
+    public function setIpuserpanier($ipuserpanier)
     {
-        $this->ippanier = $ippanier;
+        $this->ipuserpanier = $ipuserpanier;
 
         return $this;
     }
 
     /**
-     * Get ippanier
+     * Get ipuserpanier
      *
      * @return string 
      */
-    public function getIppanier()
+    public function getIpuserpanier()
     {
-        return $this->ippanier;
+        return $this->ipuserpanier;
     }
 
     /**
-     * Set numsession
+     * Set numsesspanier
      *
-     * @param integer $numsession
+     * @param string $numsesspanier
      * @return Panier
      */
-    public function setNumsession($numsession)
+    public function setNumsesspanier($numsesspanier)
     {
-        $this->numsession = $numsession;
+        $this->numsesspanier = $numsesspanier;
 
         return $this;
     }
 
     /**
-     * Get numsession
+     * Get numsesspanier
      *
-     * @return integer 
+     * @return string 
      */
-    public function getNumsession()
+    public function getNumsesspanier()
     {
-        return $this->numsession;
+        return $this->numsesspanier;
     }
 
     /**
@@ -113,6 +123,29 @@ class Panier
     public function getIdpanier()
     {
         return $this->idpanier;
+    }
+
+    /**
+     * Set iduser
+     *
+     * @param \Appolo\BackOfficeBundle\Entity\User $iduser
+     * @return Panier
+     */
+    public function setIduser(\Appolo\BackOfficeBundle\Entity\User $iduser = null)
+    {
+        $this->iduser = $iduser;
+
+        return $this;
+    }
+
+    /**
+     * Get iduser
+     *
+     * @return \Appolo\BackOfficeBundle\Entity\User 
+     */
+    public function getIduser()
+    {
+        return $this->iduser;
     }
 
     /**

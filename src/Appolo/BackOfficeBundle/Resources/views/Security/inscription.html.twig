@@ -1,0 +1,15 @@
+{% extends "::base.html.twig" %}
+
+{% form_theme form 'AppoloBackOfficeBundle:Form:fields.html.twig' %}
+
+{% block title %}AnnonceBackBundle:User:addUser{% endblock %}
+
+{% block body %}
+
+    <div class="form-basic">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

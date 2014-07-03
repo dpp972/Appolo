@@ -7,89 +7,172 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Commande
  *
- * @ORM\Table(name="commande")
+ * @ORM\Table(name="commande", indexes={@ORM\Index(name="FK_Commande_idAdresse", columns={"idAdresse"}), @ORM\Index(name="FK_Commande_idPanier", columns={"idPanier"})})
  * @ORM\Entity
  */
 class Commande
 {
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="nomDestinataire", type="text", nullable=true)
+     * @ORM\Column(name="dateCmd", type="date", nullable=false)
      */
-    private $nomdestinataire;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prenomDestinataire", type="text", nullable=true)
-     */
-    private $prenomdestinataire;
+    private $datecmd;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="idCommande", type="integer")
+     * @ORM\Column(name="idCmd", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idcommande;
+    private $idcmd;
 
+    /**
+     * @var \Appolo\BackOfficeBundle\Entity\Panier
+     *
+     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\Panier")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idPanier", referencedColumnName="idPanier")
+     * })
+     */
+    private $idpanier;
+
+    /**
+     * @var \Appolo\BackOfficeBundle\Entity\Adresse
+     *
+     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\Adresse")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idAdresse", referencedColumnName="idAdresse")
+     * })
+     */
+    private $idadresse;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Appolo\BackOfficeBundle\Entity\User", mappedBy="idcmd")
+     */
+    private $iduser;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->iduser = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
-     * Set nomdestinataire
+     * Set datecmd
      *
-     * @param string $nomdestinataire
+     * @param \DateTime $datecmd
      * @return Commande
      */
-    public function setNomdestinataire($nomdestinataire)
+    public function setDatecmd($datecmd)
     {
-        $this->nomdestinataire = $nomdestinataire;
+        $this->datecmd = $datecmd;
 
         return $this;
     }
 
     /**
-     * Get nomdestinataire
+     * Get datecmd
      *
-     * @return string 
+     * @return \DateTime 
      */
-    public function getNomdestinataire()
+    public function getDatecmd()
     {
-        return $this->nomdestinataire;
+        return $this->datecmd;
     }
 
     /**
-     * Set prenomdestinataire
-     *
-     * @param string $prenomdestinataire
-     * @return Commande
-     */
-    public function setPrenomdestinataire($prenomdestinataire)
-    {
-        $this->prenomdestinataire = $prenomdestinataire;
-
-        return $this;
-    }
-
-    /**
-     * Get prenomdestinataire
-     *
-     * @return string 
-     */
-    public function getPrenomdestinataire()
-    {
-        return $this->prenomdestinataire;
-    }
-
-    /**
-     * Get idcommande
+     * Get idcmd
      *
      * @return integer 
      */
-    public function getIdcommande()
+    public function getIdcmd()
     {
-        return $this->idcommande;
+        return $this->idcmd;
+    }
+
+    /**
+     * Set idpanier
+     *
+     * @param \Appolo\BackOfficeBundle\Entity\Panier $idpanier
+     * @return Commande
+     */
+    public function setIdpanier(\Appolo\BackOfficeBundle\Entity\Panier $idpanier = null)
+    {
+        $this->idpanier = $idpanier;
+
+        return $this;
+    }
+
+    /**
+     * Get idpanier
+     *
+     * @return \Appolo\BackOfficeBundle\Entity\Panier 
+     */
+    public function getIdpanier()
+    {
+        return $this->idpanier;
+    }
+
+    /**
+     * Set idadresse
+     *
+     * @param \Appolo\BackOfficeBundle\Entity\Adresse $idadresse
+     * @return Commande
+     */
+    public function setIdadresse(\Appolo\BackOfficeBundle\Entity\Adresse $idadresse = null)
+    {
+        $this->idadresse = $idadresse;
+
+        return $this;
+    }
+
+    /**
+     * Get idadresse
+     *
+     * @return \Appolo\BackOfficeBundle\Entity\Adresse 
+     */
+    public function getIdadresse()
+    {
+        return $this->idadresse;
+    }
+
+    /**
+     * Add iduser
+     *
+     * @param \Appolo\BackOfficeBundle\Entity\User $iduser
+     * @return Commande
+     */
+    public function addIduser(\Appolo\BackOfficeBundle\Entity\User $iduser)
+    {
+        $this->iduser[] = $iduser;
+
+        return $this;
+    }
+
+    /**
+     * Remove iduser
+     *
+     * @param \Appolo\BackOfficeBundle\Entity\User $iduser
+     */
+    public function removeIduser(\Appolo\BackOfficeBundle\Entity\User $iduser)
+    {
+        $this->iduser->removeElement($iduser);
+    }
+
+    /**
+     * Get iduser
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getIduser()
+    {
+        return $this->iduser;
     }
 }

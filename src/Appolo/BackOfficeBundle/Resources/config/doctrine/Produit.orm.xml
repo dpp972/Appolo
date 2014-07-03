@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="Appolo\BackOfficeBundle\Entity\Produit" table="produit">
+    <indexes>
+      <index name="FK_Produit_idMdlP" columns="idMdlP"/>
+    </indexes>
     <id name="idproduit" type="integer" column="idProduit">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="refproduit" type="text" column="refProduit" nullable="true"/>
+    <field name="refproduit" type="text" column="refProduit" nullable="false"/>
+    <many-to-one field="idmdlp" target-entity="Modeleproduit">
+      <join-columns>
+        <join-column name="idMdlP" referenced-column-name="idMdLP"/>
+      </join-columns>
+    </many-to-one>
     <many-to-many field="idpanier" target-entity="Panier" mapped-by="idproduit"/>
-    <many-to-many field="idmdlp" target-entity="Modeleproduit" mapped-by="idproduit"/>
   </entity>
 </doctrine-mapping>

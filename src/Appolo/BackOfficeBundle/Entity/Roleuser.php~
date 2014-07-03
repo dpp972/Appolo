@@ -1,0 +1,46 @@
+<?php
+
+namespace Appolo\BackOfficeBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Roleuser
+ *
+ * @ORM\Table(name="roleuser")
+ * @ORM\Entity
+ */
+class Roleuser
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="libelleRoleUs", type="text", nullable=false)
+     */
+    private $libelleroleus;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idRoleUs", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idroleus;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Appolo\BackOfficeBundle\Entity\User", mappedBy="idroleus")
+     */
+    private $iduser;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->iduser = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

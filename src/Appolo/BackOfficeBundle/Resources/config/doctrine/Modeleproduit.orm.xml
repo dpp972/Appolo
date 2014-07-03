@@ -4,7 +4,7 @@
     <id name="idmdlp" type="integer" column="idMdLP">
       <generator strategy="IDENTITY"/>
     </id>
-    <field name="nommdlp" type="text" column="nomMdlP" nullable="true"/>
+    <field name="nommdlp" type="text" column="nomMdlP" nullable="false"/>
     <field name="descriptionmdlp" type="text" column="descriptionMdlP" nullable="true"/>
     <field name="prixmdlp" type="text" column="prixMdLP" nullable="true"/>
     <many-to-many field="idcategorie" target-entity="Categorie" inversed-by="idmdlp">
@@ -14,16 +14,6 @@
         </join-columns>
         <inverse-join-columns>
           <join-column name="idCategorie" referenced-column-name="idCategorie"/>
-        </inverse-join-columns>
-      </join-table>
-    </many-to-many>
-    <many-to-many field="idproduit" target-entity="Produit" inversed-by="idmdlp">
-      <join-table name="appartenirmdlp">
-        <join-columns>
-          <join-column name="idMdLP" referenced-column-name="idMdLP"/>
-        </join-columns>
-        <inverse-join-columns>
-          <join-column name="idProduit" referenced-column-name="idProduit"/>
         </inverse-join-columns>
       </join-table>
     </many-to-many>

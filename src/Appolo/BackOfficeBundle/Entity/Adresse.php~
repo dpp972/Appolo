@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Adresse
  *
- * @ORM\Table(name="adresse", indexes={@ORM\Index(name="FK_Adresse_idUtilisateur", columns={"idUtilisateur"}), @ORM\Index(name="FK_Adresse_idType", columns={"idType"})})
+ * @ORM\Table(name="adresse", indexes={@ORM\Index(name="FK_Adresse_idUser", columns={"idUser"}), @ORM\Index(name="FK_Adresse_idTypeV", columns={"idTypeV"})})
  * @ORM\Entity
  */
 class Adresse
@@ -36,46 +36,24 @@ class Adresse
     private $idadresse;
 
     /**
+     * @var \Appolo\BackOfficeBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="idUser")
+     * })
+     */
+    private $iduser;
+
+    /**
      * @var \Appolo\BackOfficeBundle\Entity\Typevoie
      *
      * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\Typevoie")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idType", referencedColumnName="idType")
+     *   @ORM\JoinColumn(name="idTypeV", referencedColumnName="idTypeV")
      * })
      */
-    private $idtype;
+    private $idtypev;
 
-    /**
-     * @var \Appolo\BackOfficeBundle\Entity\Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUtilisateur", referencedColumnName="idUtilisateur")
-     * })
-     */
-    private $idutilisateur;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Appolo\BackOfficeBundle\Entity\Utilisateur", inversedBy="idadresse")
-     * @ORM\JoinTable(name="livrercommande",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idAdresse", referencedColumnName="idAdresse")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idCommande", referencedColumnName="idCommande")
-     *   }
-     * )
-     */
-    private $idcommande;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idcommande = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }

@@ -15,7 +15,7 @@ class Modeleproduit
     /**
      * @var string
      *
-     * @ORM\Column(name="nomMdlP", type="text", nullable=true)
+     * @ORM\Column(name="nomMdlP", type="text", nullable=false)
      */
     private $nommdlp;
 
@@ -58,27 +58,11 @@ class Modeleproduit
     private $idcategorie;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Appolo\BackOfficeBundle\Entity\Produit", inversedBy="idmdlp")
-     * @ORM\JoinTable(name="appartenirmdlp",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idMdLP", referencedColumnName="idMdLP")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idProduit", referencedColumnName="idProduit")
-     *   }
-     * )
-     */
-    private $idproduit;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
         $this->idcategorie = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->idproduit = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -192,38 +176,5 @@ class Modeleproduit
     public function getIdcategorie()
     {
         return $this->idcategorie;
-    }
-
-    /**
-     * Add idproduit
-     *
-     * @param \Appolo\BackOfficeBundle\Entity\Produit $idproduit
-     * @return Modeleproduit
-     */
-    public function addIdproduit(\Appolo\BackOfficeBundle\Entity\Produit $idproduit)
-    {
-        $this->idproduit[] = $idproduit;
-
-        return $this;
-    }
-
-    /**
-     * Remove idproduit
-     *
-     * @param \Appolo\BackOfficeBundle\Entity\Produit $idproduit
-     */
-    public function removeIdproduit(\Appolo\BackOfficeBundle\Entity\Produit $idproduit)
-    {
-        $this->idproduit->removeElement($idproduit);
-    }
-
-    /**
-     * Get idproduit
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getIdproduit()
-    {
-        return $this->idproduit;
     }
 }

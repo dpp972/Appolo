@@ -1,15 +1,28 @@
 appolo_back_office:
     resource: "@AppoloBackOfficeBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /admin
 
 appolo_front_borne:
     resource: "@AppoloFrontBorneBundle/Controller/"
     type:     annotation
-    prefix:   /
+    prefix:   /borne
 
 appolo_front_vitrine:
     resource: "@AppoloFrontVitrineBundle/Controller/"
     type:     annotation
     prefix:   /
 
+login:
+    pattern:   /login
+    defaults:  { _controller: AppoloBackOfficeBundle:Security:login }
+
+login_check:
+    pattern:   /login_check
+
+logout:
+    pattern:   /logout
+
+inscription:
+    pattern:   /inscription
+    defaults:  { _controller: AppoloBackOfficeBundle:Security:inscription }

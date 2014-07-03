@@ -15,7 +15,7 @@ class Modeleproduit
     /**
      * @var string
      *
-     * @ORM\Column(name="nomMdlP", type="text", nullable=true)
+     * @ORM\Column(name="nomMdlP", type="text", nullable=false)
      */
     private $nommdlp;
 
@@ -58,27 +58,11 @@ class Modeleproduit
     private $idcategorie;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Appolo\BackOfficeBundle\Entity\Produit", inversedBy="idmdlp")
-     * @ORM\JoinTable(name="appartenirmdlp",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idMdLP", referencedColumnName="idMdLP")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idProduit", referencedColumnName="idProduit")
-     *   }
-     * )
-     */
-    private $idproduit;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
         $this->idcategorie = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->idproduit = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 }

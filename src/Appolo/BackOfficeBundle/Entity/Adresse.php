@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Adresse
  *
- * @ORM\Table(name="adresse", indexes={@ORM\Index(name="FK_Adresse_idUtilisateur", columns={"idUtilisateur"}), @ORM\Index(name="FK_Adresse_idType", columns={"idType"})})
+ * @ORM\Table(name="adresse", indexes={@ORM\Index(name="FK_Adresse_idUser", columns={"idUser"}), @ORM\Index(name="FK_Adresse_idTypeV", columns={"idTypeV"})})
  * @ORM\Entity
  */
 class Adresse
@@ -36,47 +36,25 @@ class Adresse
     private $idadresse;
 
     /**
+     * @var \Appolo\BackOfficeBundle\Entity\User
+     *
+     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="idUser")
+     * })
+     */
+    private $iduser;
+
+    /**
      * @var \Appolo\BackOfficeBundle\Entity\Typevoie
      *
      * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\Typevoie")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idType", referencedColumnName="idType")
+     *   @ORM\JoinColumn(name="idTypeV", referencedColumnName="idTypeV")
      * })
      */
-    private $idtype;
+    private $idtypev;
 
-    /**
-     * @var \Appolo\BackOfficeBundle\Entity\Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUtilisateur", referencedColumnName="idUtilisateur")
-     * })
-     */
-    private $idutilisateur;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Appolo\BackOfficeBundle\Entity\Utilisateur", inversedBy="idadresse")
-     * @ORM\JoinTable(name="livrercommande",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idAdresse", referencedColumnName="idAdresse")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idCommande", referencedColumnName="idCommande")
-     *   }
-     * )
-     */
-    private $idcommande;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idcommande = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 
     /**
@@ -136,81 +114,48 @@ class Adresse
     }
 
     /**
-     * Set idtype
+     * Set iduser
      *
-     * @param \Appolo\BackOfficeBundle\Entity\Typevoie $idtype
+     * @param \Appolo\BackOfficeBundle\Entity\User $iduser
      * @return Adresse
      */
-    public function setIdtype(\Appolo\BackOfficeBundle\Entity\Typevoie $idtype = null)
+    public function setIduser(\Appolo\BackOfficeBundle\Entity\User $iduser = null)
     {
-        $this->idtype = $idtype;
+        $this->iduser = $iduser;
 
         return $this;
     }
 
     /**
-     * Get idtype
+     * Get iduser
+     *
+     * @return \Appolo\BackOfficeBundle\Entity\User 
+     */
+    public function getIduser()
+    {
+        return $this->iduser;
+    }
+
+    /**
+     * Set idtypev
+     *
+     * @param \Appolo\BackOfficeBundle\Entity\Typevoie $idtypev
+     * @return Adresse
+     */
+    public function setIdtypev(\Appolo\BackOfficeBundle\Entity\Typevoie $idtypev = null)
+    {
+        $this->idtypev = $idtypev;
+
+        return $this;
+    }
+
+    /**
+     * Get idtypev
      *
      * @return \Appolo\BackOfficeBundle\Entity\Typevoie 
      */
-    public function getIdtype()
+    public function getIdtypev()
     {
-        return $this->idtype;
-    }
-
-    /**
-     * Set idutilisateur
-     *
-     * @param \Appolo\BackOfficeBundle\Entity\Utilisateur $idutilisateur
-     * @return Adresse
-     */
-    public function setIdutilisateur(\Appolo\BackOfficeBundle\Entity\Utilisateur $idutilisateur = null)
-    {
-        $this->idutilisateur = $idutilisateur;
-
-        return $this;
-    }
-
-    /**
-     * Get idutilisateur
-     *
-     * @return \Appolo\BackOfficeBundle\Entity\Utilisateur 
-     */
-    public function getIdutilisateur()
-    {
-        return $this->idutilisateur;
-    }
-
-    /**
-     * Add idcommande
-     *
-     * @param \Appolo\BackOfficeBundle\Entity\Utilisateur $idcommande
-     * @return Adresse
-     */
-    public function addIdcommande(\Appolo\BackOfficeBundle\Entity\Utilisateur $idcommande)
-    {
-        $this->idcommande[] = $idcommande;
-
-        return $this;
-    }
-
-    /**
-     * Remove idcommande
-     *
-     * @param \Appolo\BackOfficeBundle\Entity\Utilisateur $idcommande
-     */
-    public function removeIdcommande(\Appolo\BackOfficeBundle\Entity\Utilisateur $idcommande)
-    {
-        $this->idcommande->removeElement($idcommande);
-    }
-
-    /**
-     * Get idcommande
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getIdcommande()
-    {
-        return $this->idcommande;
+        return $this->idtypev;
     }
 }
