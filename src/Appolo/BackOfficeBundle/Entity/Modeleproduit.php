@@ -75,7 +75,7 @@ class Modeleproduit
     public function setNommdlp($nommdlp)
     {
         $this->nommdlp = $nommdlp;
-
+    
         return $this;
     }
 
@@ -98,7 +98,7 @@ class Modeleproduit
     public function setDescriptionmdlp($descriptionmdlp)
     {
         $this->descriptionmdlp = $descriptionmdlp;
-
+    
         return $this;
     }
 
@@ -121,7 +121,7 @@ class Modeleproduit
     public function setPrixmdlp($prixmdlp)
     {
         $this->prixmdlp = $prixmdlp;
-
+    
         return $this;
     }
 
@@ -154,7 +154,7 @@ class Modeleproduit
     public function addIdcategorie(\Appolo\BackOfficeBundle\Entity\Categorie $idcategorie)
     {
         $this->idcategorie[] = $idcategorie;
-
+    
         return $this;
     }
 

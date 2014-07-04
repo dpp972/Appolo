@@ -39,7 +39,7 @@ class Typevoie
     public function setLibelletype($libelletype)
     {
         $this->libelletype = $libelletype;
-
+    
         return $this;
     }
 

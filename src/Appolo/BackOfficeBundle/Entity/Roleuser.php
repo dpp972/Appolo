@@ -53,7 +53,7 @@ class Roleuser
     public function setLibelleroleus($libelleroleus)
     {
         $this->libelleroleus = $libelleroleus;
-
+    
         return $this;
     }
 
@@ -86,7 +86,7 @@ class Roleuser
     public function addIduser(\Appolo\BackOfficeBundle\Entity\User $iduser)
     {
         $this->iduser[] = $iduser;
-
+    
         return $this;
     }
 
