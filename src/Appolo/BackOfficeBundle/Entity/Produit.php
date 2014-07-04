@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Produit
  *
- * @ORM\Table(name="produit")
+ * @ORM\Table(name="produit", indexes={@ORM\Index(name="FK_Produit_idMdlP", columns={"idMdlP"})})
  * @ORM\Entity
  */
 class Produit
@@ -15,7 +15,7 @@ class Produit
     /**
      * @var string
      *
-     * @ORM\Column(name="refProduit", type="text", nullable=true)
+     * @ORM\Column(name="refProduit", type="text", nullable=false)
      */
     private $refproduit;
 
@@ -29,6 +29,16 @@ class Produit
     private $idproduit;
 
     /**
+     * @var \Appolo\BackOfficeBundle\Entity\Modeleproduit
+     *
+     * @ORM\ManyToOne(targetEntity="Appolo\BackOfficeBundle\Entity\Modeleproduit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idMdlP", referencedColumnName="idMdLP")
+     * })
+     */
+    private $idmdlp;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Appolo\BackOfficeBundle\Entity\Panier", mappedBy="idproduit")
@@ -36,20 +46,11 @@ class Produit
     private $idpanier;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Appolo\BackOfficeBundle\Entity\Modeleproduit", mappedBy="idproduit")
-     */
-    private $idmdlp;
-
-    /**
      * Constructor
      */
-    public function __construct(array $param)
+    public function __construct()
     {
         $this->idpanier = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->idmdlp = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->setRefproduit($param[0]['field']);
     }
 
 
@@ -87,6 +88,29 @@ class Produit
     }
 
     /**
+     * Set idmdlp
+     *
+     * @param \Appolo\BackOfficeBundle\Entity\Modeleproduit $idmdlp
+     * @return Produit
+     */
+    public function setIdmdlp(\Appolo\BackOfficeBundle\Entity\Modeleproduit $idmdlp = null)
+    {
+        $this->idmdlp = $idmdlp;
+
+        return $this;
+    }
+
+    /**
+     * Get idmdlp
+     *
+     * @return \Appolo\BackOfficeBundle\Entity\Modeleproduit 
+     */
+    public function getIdmdlp()
+    {
+        return $this->idmdlp;
+    }
+
+    /**
      * Add idpanier
      *
      * @param \Appolo\BackOfficeBundle\Entity\Panier $idpanier
@@ -117,38 +141,5 @@ class Produit
     public function getIdpanier()
     {
         return $this->idpanier;
-    }
-
-    /**
-     * Add idmdlp
-     *
-     * @param \Appolo\BackOfficeBundle\Entity\Modeleproduit $idmdlp
-     * @return Produit
-     */
-    public function addIdmdlp(\Appolo\BackOfficeBundle\Entity\Modeleproduit $idmdlp)
-    {
-        $this->idmdlp[] = $idmdlp;
-
-        return $this;
-    }
-
-    /**
-     * Remove idmdlp
-     *
-     * @param \Appolo\BackOfficeBundle\Entity\Modeleproduit $idmdlp
-     */
-    public function removeIdmdlp(\Appolo\BackOfficeBundle\Entity\Modeleproduit $idmdlp)
-    {
-        $this->idmdlp->removeElement($idmdlp);
-    }
-
-    /**
-     * Get idmdlp
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getIdmdlp()
-    {
-        return $this->idmdlp;
     }
 }

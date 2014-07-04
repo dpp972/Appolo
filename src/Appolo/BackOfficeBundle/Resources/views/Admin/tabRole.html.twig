@@ -9,24 +9,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td><input type="checkbox" name="" /></td>
-            <td>1</td>
-            <td>Power</td>
-            <th><a href="#">editer</a> | <a href="#">supprimer</a></th>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="" /></td>
-            <td>2</td>
-            <td>Service client</td>
-            <th><a href="#">editer</a> | <a href="#">supprimer</a></th>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="" /></td>
-            <td>3</td>
-            <td>Produit</td>
-            <th><a href="#">editer</a> | <a href="#">supprimer</a></th>
-        </tr>
+        {% for role in items %} 
+            <tr>
+                <td><input type="checkbox" name="" /></td>
+                <td>{{role.idRoleUs}}</td>
+                <td>{{role.libelleRoleUs}}</td>
+                <td><a href="{{ path('appolo_back_office_get', {'type': 'categorie','id' : role.idRoleUs }) }}">editer</a> |
+                    <a href="{{ path('appolo_back_office_delete', {'type': 'categorie','id' : role.idRoleUs }) }}">supprimer</a></td>
+            </tr>
+        {% endfor %}
     </tbody>
 </table>
 </div>

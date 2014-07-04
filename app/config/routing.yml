@@ -26,3 +26,6 @@ logout:
 inscription:
     pattern:   /inscription
     defaults:  { _controller: AppoloBackOfficeBundle:Security:inscription }
+
+    
+    

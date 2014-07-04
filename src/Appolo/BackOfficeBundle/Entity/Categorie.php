@@ -38,10 +38,9 @@ class Categorie
     /**
      * Constructor
      */
-    public function __construct($param)
+    public function __construct()
     {
         $this->idmdlp = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->setLibellecategorie($param[0]['field']);
     }
 
 
