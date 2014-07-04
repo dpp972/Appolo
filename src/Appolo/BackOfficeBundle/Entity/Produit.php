@@ -142,4 +142,16 @@ class Produit
     {
         return $this->idpanier;
     }
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
+    public function arrayView(){
+
+        return array(
+            'id' => $this->idproduit,
+            'reference' => $this->refproduit,
+            'idmdlp' => $this->idmdlp,
+            'idpanier' => $this->idpanier,
+        );
+    }
 }

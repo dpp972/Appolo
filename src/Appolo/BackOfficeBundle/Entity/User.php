@@ -523,4 +523,21 @@ class User implements UserInterface, \Serializable
     {
         // TODO: Implement eraseCredentials() method.
     }
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
+    public function arrayView(){
+
+        return array(
+            'id' => $this->iduser,
+            'nom' => $this->nomuser,
+            'prenom' => $this->prenomuser,
+            'identifiant' => $this->identifiantuser,
+            'dateNaiss' => $this->datenaissuser,
+            'email' => $this->emailuser,
+            'idAdresseLiv' => $this->idadresseliv,
+            'idPanier' => $this->idpanier,
+            'roles' => $this->getRoles(),
+        );
+    }
 }

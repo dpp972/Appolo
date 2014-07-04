@@ -1,3 +1,8 @@
+appolo_web_service:
+    resource: "@AppoloWebServiceBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 appolo_back_office:
     resource: "@AppoloBackOfficeBundle/Controller/"
     type:     annotation

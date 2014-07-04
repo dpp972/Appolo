@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Appolo\FrontVitrineBundle\AppoloFrontVitrineBundle(),
             new Appolo\FrontBorneBundle\AppoloFrontBorneBundle(),
             new Appolo\BackOfficeBundle\AppoloBackOfficeBundle(),
+            new Appolo\WebServiceBundle\AppoloWebServiceBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

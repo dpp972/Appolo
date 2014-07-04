@@ -109,4 +109,14 @@ class Categorie
     {
         return $this->idmdlp;
     }
+
+    /*----------------------------------------------------------------------------------------------------------------*/
+
+    public function arrayView(){
+
+        return array(
+            'id' => $this->idcategorie,
+            'libelle' => $this->libellecategorie,
+        );
+    }
 }
