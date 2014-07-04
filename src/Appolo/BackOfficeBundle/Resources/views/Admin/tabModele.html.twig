@@ -4,26 +4,24 @@
         <tr>
             <th><input type="checkbox" name="" /></th>
             <th>id</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Language</th>
+            <th>libelle du modele</th>
+            <th>desciption du modele</th>
+            <th>Prix</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td><input type="checkbox" name="" /></td>
-            <td>1</td>
-            <td>Some</td>
-            <td>One</td>
-            <td>English</td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="" /></td>
-            <td>2</td>
-            <td>Joe</td>
-            <td>Sixpack</td>
-            <td>English</td>
-        </tr>
+        {% for modele in items %} 
+            <tr>
+                <td><input type="checkbox" name="" /></td>
+                <td>{{modele.idMdLP}}</td>
+                <td>{{modele.nomMdlP}}</td>
+                <td>{{modele.descriptionMdlP}}</td>
+                <td>{{modele.prixMdLP}}</td>
+                <td><a href="{{ path('appolo_back_office_get', {'type': 'categorie','id' : modele.idMdLP }) }}">editer</a> |
+                    <a href="{{ path('appolo_back_office_delete', {'type': 'categorie','id' : modele.idMdLP }) }}">supprimer</a></td>
+            </tr>
+        {% endfor %}
     </tbody>
 </table>
 </div>
