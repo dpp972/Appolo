@@ -115,8 +115,8 @@ class Categorie
     public function arrayView(){
 
         return array(
-            'id' => $this->idcategorie,
-            'libelle' => $this->libellecategorie,
+            'idcategorie' => $this->idcategorie,
+            'libellecategorie' => $this->libellecategorie,
         );
     }
 }

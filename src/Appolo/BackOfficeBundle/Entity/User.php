@@ -529,14 +529,14 @@ class User implements UserInterface, \Serializable
     public function arrayView(){
 
         return array(
-            'id' => $this->iduser,
-            'nom' => $this->nomuser,
-            'prenom' => $this->prenomuser,
-            'identifiant' => $this->identifiantuser,
-            'dateNaiss' => $this->datenaissuser,
-            'email' => $this->emailuser,
-            'idAdresseLiv' => $this->idadresseliv,
-            'idPanier' => $this->idpanier,
+            'iduser' => $this->iduser,
+            'nomuser' => $this->nomuser,
+            'prenomuser' => $this->prenomuser,
+            'identifiantuser' => $this->identifiantuser,
+            'datenaissuser' => $this->datenaissuser,
+            'emailuser' => $this->emailuser,
+            'idadresseliv' => $this->idadresseliv,
+            'idpanier' => $this->idpanier,
             'roles' => $this->getRoles(),
         );
     }

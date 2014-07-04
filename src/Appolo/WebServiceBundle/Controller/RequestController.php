@@ -27,4 +27,19 @@ class RequestController extends Controller
         return new JsonResponse( $result);
     }
 
+    /**
+     * @Route("/get/{entityName}/{id}")
+     * @Template()
+     */
+    public function getObjectsByIdAction($entityName, $id)
+    {
+        $id =  strtolower($id);
+        $entityName = ucfirst( strtolower( $entityName));
+        $rep = $this->getDoctrine()->getRepository('AppoloBackOfficeBundle:'.$entityName);
+        $obj = $rep->find($id);
+
+
+        return new JsonResponse( $obj->arrayView());
+    }
+
 }
