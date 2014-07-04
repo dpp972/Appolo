@@ -14,8 +14,8 @@
                 <td><input type="checkbox" name="" /></td>
                 <td>{{role.idRoleUs}}</td>
                 <td>{{role.libelleRoleUs}}</td>
-                <td><a href="{{ path('appolo_back_office_get', {'type': 'categorie','id' : role.idRoleUs }) }}">editer</a> |
-                    <a href="{{ path('appolo_back_office_delete', {'type': 'categorie','id' : role.idRoleUs }) }}">supprimer</a></td>
+                <td><a href="{{ path('appolo_back_office_get', {'type': 'role','id' : role.idRoleUs }) }}">editer</a> |
+                    <a href="{{ path('appolo_back_office_delete', {'type': 'role','id' : role.idRoleUs }) }}">supprimer</a></td>
             </tr>
         {% endfor %}
     </tbody>

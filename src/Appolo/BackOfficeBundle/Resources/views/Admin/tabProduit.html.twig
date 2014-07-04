@@ -9,18 +9,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td><input type="checkbox" name="" /></td>
-            <td>1</td>
-            <td>Some</td>
-            <td><a href="#">editer</a> | <a href="#">supprimer</a></td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="" /></td>
-            <td>2</td>
-            <td>Joe</td>
-            <td><a href="#">editer</a> | <a href="#">supprimer</a></td>
-        </tr>
+         {% for produit in items %} 
+            <tr>
+                <td><input type="checkbox" name="" /></td>
+                <td>{{produit.idProduit}}</td>
+                <td>{{produit.refProduit}}</td>
+                <td><a href="{{ path('appolo_back_office_get', {'type': 'produit','id' : produit.idProduit }) }}">editer</a> |
+                    <a href="{{ path('appolo_back_office_delete', {'type': 'produit','id' : produit.idProduit }) }}">supprimer</a></td>
+            </tr>
+        {% endfor %}
     </tbody>
 </table>
 </div>

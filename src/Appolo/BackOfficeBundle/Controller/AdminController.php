@@ -9,8 +9,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 use Appolo\BackOfficeBundle\Entity\Categorie;
 use Appolo\BackOfficeBundle\Entity\Produit;
-use Appolo\BackOfficeBundle\Entity\Utilisateur;
+use Appolo\BackOfficeBundle\Entity\User;
 use Appolo\BackOfficeBundle\Entity\Modeleproduit;
+use Appolo\BackOfficeBundle\Entity\Roleuser;
 
 class AdminController extends Controller
 {
@@ -25,7 +26,6 @@ class AdminController extends Controller
     }
     
     
-    
     /**
      * @Route("{type}", name="appolo_back_office_list")
      * @param type $type categorie, prod, user
@@ -38,48 +38,14 @@ class AdminController extends Controller
         if(!$msg['state'])
             return $msg['msg'];
         
-        switch($type){  
-            case 'categorie':
-                $repository = $this->getDoctrine()->getRepository('AppoloBackOfficeBundle:Categorie');
-                $items = $repository->findAll();
-                $nbItems = count($items);
-                return $this->render('AppoloBackOfficeBundle:Admin:list.html.twig', array('name'=> $type , 'items'=>$items ));
-                break;
-            
-            case 'modele':
-                $repository = $this->getDoctrine()->getRepository('AppoloBackOfficeBundle:Modeleproduit');
-                $items = $repository->findAll();
-                $nbItems = count($items);
-                return $this->render('AppoloBackOfficeBundle:Admin:list.html.twig', array('name'=> $type , 'items'=>$items ));
-                break;
-            
-            case 'role':
-                $repository = $this->getDoctrine()->getRepository('AppoloBackOfficeBundle:Roleuser');
-                $items = $repository->findAll();
-                $nbItems = count($items);
-                return $this->render('AppoloBackOfficeBundle:Admin:list.html.twig', array('name'=> $type , 'items'=>$items ));
-                break;
-            
-            case 'user':
-                $repository = $this->getDoctrine()->getRepository('AppoloBackOfficeBundle:User');
-                $items = $repository->findAll();
-                $nbItems = count($items);
-                return $this->render('AppoloBackOfficeBundle:Admin:list.html.twig', array('name'=> $type , 'items'=>$items ));
-                break;
-            
-            
-            
-            
-                
-        }
+        $items = file_get_contents('http://appolo.local/list/'.$type);
+        return $this->render('AppoloBackOfficeBundle:Admin:list.html.twig', array('name'=> $type , 'items'=>  json_decode($items) ));
         
-        
- 
     }
     
     
      /**
-     * @Route("{type}/{id}", name="get")
+     * @Route("{type}/{id}", name="appolo_back_office_get")
      * @param type $type categorie, prod, user
      * @Template()
      */
@@ -91,42 +57,63 @@ class AdminController extends Controller
         if(!$msg['state'])
             return $msg['msg'];
         
-        switch($type){  
-            case 'categorie':
-                $repository = $this->getDoctrine()->getRepository('AppoloBackOfficeBundle:Categorie');
-                $item = $repository->find($id);
-                return $this->render('AppoloBackOfficeBundle:Admin:get.html.twig', array('name'=> $type , 'item'=>$item ));
-                break;
-            
-            case 'modele':
-                $repository = $this->getDoctrine()->getRepository('AppoloBackOfficeBundle:Modeleproduit');
-                $item = $repository->find($id);
-                return $this->render('AppoloBackOfficeBundle:Admin:get.html.twig', array('name'=> $type , 'item'=>$item ));
-                break;
-            
-            case 'role':
-                $repository = $this->getDoctrine()->getRepository('AppoloBackOfficeBundle:Roleuser');
-                $items = $repository->find($id);
-                return $this->render('AppoloBackOfficeBundle:Admin:get.html.twig', array('name'=> $type , 'item'=>$item ));
-                break;
-            
-            case 'user':
-                $repository = $this->getDoctrine()->getRepository('AppoloBackOfficeBundle:User');
-                $items = $repository->find($id);
-                return $this->render('AppoloBackOfficeBundle:Admin:get.html.twig', array('name'=> $type , 'item'=>$item ));
-                break;
-        }    
+        $item = file_get_contents('http://appolo.local/get/'.$type.'/'.$id);
+        return $this->render('AppoloBackOfficeBundle:Admin:get.html.twig', array('name'=> $type , 'item'=>  json_decode($item) ));
+        
+        
     }
     
       /**
-     * @Route("{type}/{id}", name="delete")
+     * @Route("/del/{type}/{id}", name="appolo_back_office_delete")
      * @param type $type categorie, prod, user
      * @Template()
      */
-//    public function deleteAction($type)
-//    {
-//        
-//    }
+    public function deleteAction($type , $id)
+    {
+        $msg = $this->_isValidType($type);
+        $id = (int) $id ;
+        $em = $this->getDoctrine()->getManager();
+        
+        if(!$msg['state'])
+            return $msg['msg'];
+        
+        switch($type){  
+            case 'categorie':
+                $categorie = $em->getRepository('AppoloBackOfficeBundle:Categorie')->find($id);
+                $em->remove($categorie);
+                $em->flush();
+                return $this->redirect($this->generateUrl('appolo_back_office_list'));
+                break;
+            
+            case 'modele':
+                $modele = $em->getRepository('AppoloBackOfficeBundle:Modeleproduit')->find($id);
+                $em->remove($modele);
+                $em->flush();
+                return $this->redirect($this->generateUrl('appolo_back_office_list'));
+                break;
+            
+            case 'role':
+                $role = $em->getRepository('AppoloBackOfficeBundle:Roleuser')->find($id);
+                $em->remove($role);
+                $em->flush();
+                return $this->redirect($this->generateUrl('appolo_back_office_list'));
+                break;
+            
+            case 'user':
+                $user = $em->getRepository('AppoloBackOfficeBundle:User')->find($id);
+                $em->remove($user);
+                $em->flush();
+                return $this->redirect($this->generateUrl('appolo_back_office_list'));
+                break;
+            
+            case 'produit':
+                $produit = $em->getRepository('AppoloBackOfficeBundle:Produit')->find($id);
+                $em->remove($produit);
+                $em->flush();
+                return $this->redirect($this->generateUrl('appolo_back_office_list'));
+                break;
+        }    
+    }
     
       /**
      * @Route("admin/{type}/{id}", name="update")
@@ -140,7 +127,7 @@ class AdminController extends Controller
     
     
      /**
-     * @Route("admin/{type}", name="export")
+     * @Route("admin/{type}", name="appolo_back_office_export")
      * @param type $type categorie, prod, user
      * @Template()
      */
@@ -167,32 +154,51 @@ class AdminController extends Controller
             return $msg['msg'];
         
         switch($type){  
-            case 'utilisateur':
+            case 'user':
                   $param = array(
                     array(
-                    'field' => 'nomutilisateur',
+                    'field' => 'nomuser',
                     'type' => 'text',
                     'label' => 'Nom'),
                       
                     array(
-                    'field' => 'prenomutilisateur',
+                    'field' => 'prenomuser',
                     'type' => 'text',
                     'label' => 'Prenom'),
                       
                     array(
-                    'field' => 'pseudoutilisateur',
+                    'field' => 'identifiantuser',
                     'type' => 'text',
                     'label' => 'Pseudo'),
                       
                     array(
-                    'field' => 'datenaissutilisateur',
+                    'field' => 'datenaissuser',
                     'type' => 'text',
-                    'label' => 'Date de naissance')
+                    'label' => 'Date de naissance'),
+                      
+                     
+                    array(
+                    'field' => 'emailuser',
+                    'type' => 'text',
+                    'label' => 'Email'),
+                      
+                    array(
+                    'field' => 'passworduser',
+                    'type' => 'password',
+                    'label' => 'Mot de passe')
                       
                 );
                 
-                $utilisateur = new Utilisateur($param);
+                $utilisateur = new User($param);
                 $form = $this->_buildCRUDForm($utilisateur,$param);
+                
+                $form->handleRequest( $request);
+                
+                if($this->getRequest()->getMethod() ==  'POST'){
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($utilisateur);
+                    $em->flush();
+                }
                 break;
             
             case 'categorie':
@@ -225,6 +231,14 @@ class AdminController extends Controller
                 $product = new Produit($param);
                 
                 $form = $this->_buildCRUDForm($product,$param);
+                
+                $form->handleRequest( $request);
+                
+                if($this->getRequest()->getMethod() ==  'POST'){
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($product);
+                    $em->flush();
+                }
                 break;
             
             case 'paiement':
@@ -245,6 +259,57 @@ class AdminController extends Controller
                 $export = new Export();
                 $form = $this->_buildExportForm($export , $param);
                 break;
+            
+           case 'role':
+                
+                $param = array(array(
+                    'field' => 'libelleroleus',
+                    'type' => 'text',
+                    'label' => 'Libellé'));
+                
+                
+                $role = new Roleuser($param);
+                
+                $form = $this->_buildCRUDForm($role,$param);
+                
+                 $form->handleRequest( $request);
+                
+                if($this->getRequest()->getMethod() ==  'POST'){
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($role);
+                    $em->flush();
+                }
+                break;
+            
+            case 'modele':
+                
+                $param = array(array(
+                    'field' => 'nommdlp',
+                    'type' => 'text',
+                    'label' => 'Libellé Modele'),
+                    array(
+                    'field' => 'descriptionmdlp',
+                    'type' => 'text',
+                    'label' => 'Description Modele'),
+                    array(
+                    'field' => 'prixmdlp',
+                    'type' => 'text',
+                    'label' => 'Prix Modele')
+                    );
+                
+                $modele = new Modeleproduit($param);
+                
+                $form = $this->_buildCRUDForm($modele,$param);
+                
+                 $form->handleRequest( $request);
+                
+                if($this->getRequest()->getMethod() ==  'POST'){
+                    $em = $this->getDoctrine()->getManager();
+                    $em->persist($modele);
+                    $em->flush();
+                }
+                break;
+            
             
             default:
                 break;
@@ -322,7 +387,7 @@ class AdminController extends Controller
     private function _isValidType($type)
     {
         $msg            = "";
-        $aExistingType  = array('utilisateur','categorie','produit','paiement','contact','export','boutique','accueil','user','modele','logo','role');
+        $aExistingType  = array('user','categorie','produit','paiement','contact','export','boutique','accueil','user','modele','logo','role');
         
         if(!in_array($type,$aExistingType)){
           $msg          = '<h3>Type invalide</h3>';

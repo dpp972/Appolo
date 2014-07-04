@@ -12,10 +12,10 @@
         {% for cat in items %} 
             <tr>
                 <td><input type="checkbox" name="" /></td>
-                <td>{{cat.idCategorie}}</td>
-                <td>{{cat.libelleCategorie}}</td>
-                <td><a href="{{ path('appolo_back_office_get', {'type': 'categorie','id' : cat.idCategorie }) }}">editer</a> |
-                    <a href="{{ path('appolo_back_office_delete', {'type': 'categorie','id' : cat.idCategorie }) }}">supprimer</a></td>
+                <td>{{cat.idcategorie}}</td>
+                <td>{{cat.libellecategorie}}</td>
+                <td><a href="{{ path('appolo_back_office_get', {'type': 'categorie','id' : cat.idcategorie }) }}">editer</a> |
+                    <a href="{{ path('appolo_back_office_delete', {'type': 'categorie','id' : cat.idcategorie }) }}">supprimer</a></td>
             </tr>
         {% endfor %}
         

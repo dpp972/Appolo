@@ -3,33 +3,28 @@
     <thead>
         <tr>
             <th><input type="checkbox" name="" /></th>
-            <th>id</th>
+            <th>ID</th>
             <th>Nom</th>
             <th>Prenom</th>
-            <th>Pseudo</th>
-            <th>Date de naissance</th>
+            <th>Identifiant</th>
+            <th>Email</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td><input type="checkbox" name="" /></td>
-            <td>1</td>
-            <td>Some</td>
-            <td>One</td>
-            <td>English</td>
-            <td>English</td>
-            <td><a href="#">editer</a> | <a href="#">supprimer</a></td>
-        </tr>
-        <tr>
-            <td><input type="checkbox" name="" /></td>
-            <td>2</td>
-            <td>Joe</td>
-            <td>Sixpack</td>
-            <td>English</td>
-            <td>English</td>
-            <td><a href="#">editer</a> | <a href="#">supprimer</a></td>
-        </tr>
+       {% for user in items %} 
+           
+           <tr>
+                <td><input type="checkbox" name="" /></td>
+                <td>{{user.iduser}}</td>
+                <td>{{user.nomuser}}</td>
+                <td>{{user.prenomuser}}</td>
+                <td>{{user.identifiantuser}}</td>
+                 <td>{{user.emailuser}}</td>
+                <td><a href="{{ path('appolo_back_office_get', {'type': 'user','id' : user.iduser }) }}">editer</a> |
+                    <a href="{{ path('appolo_back_office_delete', {'type': 'user','id' : user.iduser }) }}">supprimer</a></td>
+            </tr>
+        {% endfor %}
     </tbody>
 </table>
 </div>

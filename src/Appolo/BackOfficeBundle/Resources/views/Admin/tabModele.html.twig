@@ -18,8 +18,8 @@
                 <td>{{modele.nomMdlP}}</td>
                 <td>{{modele.descriptionMdlP}}</td>
                 <td>{{modele.prixMdLP}}</td>
-                <td><a href="{{ path('appolo_back_office_get', {'type': 'categorie','id' : modele.idMdLP }) }}">editer</a> |
-                    <a href="{{ path('appolo_back_office_delete', {'type': 'categorie','id' : modele.idMdLP }) }}">supprimer</a></td>
+                <td><a href="{{ path('appolo_back_office_get', {'type': 'modele','id' : modele.idMdLP }) }}">editer</a> |
+                    <a href="{{ path('appolo_back_office_delete', {'type': 'modele','id' : modele.idMdLP }) }}">supprimer</a></td>
             </tr>
         {% endfor %}
     </tbody>
