@@ -78,7 +78,7 @@ class Panier
     public function setIpuserpanier($ipuserpanier)
     {
         $this->ipuserpanier = $ipuserpanier;
-
+    
         return $this;
     }
 
@@ -101,7 +101,7 @@ class Panier
     public function setNumsesspanier($numsesspanier)
     {
         $this->numsesspanier = $numsesspanier;
-
+    
         return $this;
     }
 
@@ -134,7 +134,7 @@ class Panier
     public function setIduser(\Appolo\BackOfficeBundle\Entity\User $iduser = null)
     {
         $this->iduser = $iduser;
-
+    
         return $this;
     }
 
@@ -157,7 +157,7 @@ class Panier
     public function addIdproduit(\Appolo\BackOfficeBundle\Entity\Produit $idproduit)
     {
         $this->idproduit[] = $idproduit;
-
+    
         return $this;
     }
 

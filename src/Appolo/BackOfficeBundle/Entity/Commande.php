@@ -73,7 +73,7 @@ class Commande
     public function setDatecmd($datecmd)
     {
         $this->datecmd = $datecmd;
-
+    
         return $this;
     }
 
@@ -106,7 +106,7 @@ class Commande
     public function setIdpanier(\Appolo\BackOfficeBundle\Entity\Panier $idpanier = null)
     {
         $this->idpanier = $idpanier;
-
+    
         return $this;
     }
 
@@ -129,7 +129,7 @@ class Commande
     public function setIdadresse(\Appolo\BackOfficeBundle\Entity\Adresse $idadresse = null)
     {
         $this->idadresse = $idadresse;
-
+    
         return $this;
     }
 
@@ -152,7 +152,7 @@ class Commande
     public function addIduser(\Appolo\BackOfficeBundle\Entity\User $iduser)
     {
         $this->iduser[] = $iduser;
-
+    
         return $this;
     }
 

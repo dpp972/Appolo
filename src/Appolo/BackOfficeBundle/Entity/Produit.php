@@ -63,7 +63,7 @@ class Produit
     public function setRefproduit($refproduit)
     {
         $this->refproduit = $refproduit;
-
+    
         return $this;
     }
 
@@ -96,7 +96,7 @@ class Produit
     public function setIdmdlp(\Appolo\BackOfficeBundle\Entity\Modeleproduit $idmdlp = null)
     {
         $this->idmdlp = $idmdlp;
-
+    
         return $this;
     }
 
@@ -119,7 +119,7 @@ class Produit
     public function addIdpanier(\Appolo\BackOfficeBundle\Entity\Panier $idpanier)
     {
         $this->idpanier[] = $idpanier;
-
+    
         return $this;
     }
 

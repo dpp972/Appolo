@@ -53,7 +53,7 @@ class Categorie
     public function setLibellecategorie($libellecategorie)
     {
         $this->libellecategorie = $libellecategorie;
-
+    
         return $this;
     }
 
@@ -86,7 +86,7 @@ class Categorie
     public function addIdmdlp(\Appolo\BackOfficeBundle\Entity\Modeleproduit $idmdlp)
     {
         $this->idmdlp[] = $idmdlp;
-
+    
         return $this;
     }
 

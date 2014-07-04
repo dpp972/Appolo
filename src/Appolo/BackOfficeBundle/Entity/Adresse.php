@@ -66,7 +66,7 @@ class Adresse
     public function setNomvoie($nomvoie)
     {
         $this->nomvoie = $nomvoie;
-
+    
         return $this;
     }
 
@@ -89,7 +89,7 @@ class Adresse
     public function setNumerovoie($numerovoie)
     {
         $this->numerovoie = $numerovoie;
-
+    
         return $this;
     }
 
@@ -122,7 +122,7 @@ class Adresse
     public function setIduser(\Appolo\BackOfficeBundle\Entity\User $iduser = null)
     {
         $this->iduser = $iduser;
-
+    
         return $this;
     }
 
@@ -145,7 +145,7 @@ class Adresse
     public function setIdtypev(\Appolo\BackOfficeBundle\Entity\Typevoie $idtypev = null)
     {
         $this->idtypev = $idtypev;
-
+    
         return $this;
     }
 
