@@ -14,7 +14,7 @@ use Appolo\BackOfficeBundle\Entity\Modeleproduit;
 class AdminController extends Controller
 {
     /**
-     * @Route("/admin" , name="base")
+     * @Route("/" , name="base")
      * @Template()
      */
     public function indexAction()
