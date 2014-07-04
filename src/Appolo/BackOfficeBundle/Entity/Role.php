@@ -28,19 +28,38 @@ class Role
      */
     private $idrole;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Appolo\BackOfficeBundle\Entity\Utilisateur", mappedBy="idrole")
-     */
-    private $idutilisateur;
+
 
     /**
-     * Constructor
+     * Set libellerole
+     *
+     * @param string $libellerole
+     * @return Role
      */
-    public function __construct()
+    public function setLibellerole($libellerole)
     {
-        $this->idutilisateur = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->libellerole = $libellerole;
+
+        return $this;
     }
 
+    /**
+     * Get libellerole
+     *
+     * @return string 
+     */
+    public function getLibellerole()
+    {
+        return $this->libellerole;
+    }
+
+    /**
+     * Get idrole
+     *
+     * @return integer 
+     */
+    public function getIdrole()
+    {
+        return $this->idrole;
+    }
 }
