@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Passercommande
  *
- * @ORM\Table(name="passercommande", indexes={@ORM\Index(name="FK_PasserCommande_idCommande", columns={"idCommande"}), @ORM\Index(name="FK_PasserCommande_idPanier", columns={"idPanier"}), @ORM\Index(name="IDX_3EF6F3DC5D419CCB", columns={"idUtilisateur"})})
+ * @ORM\Table(name="passercommande", indexes={@ORM\Index(name="FK_PasserCommande_idCommande", columns={"idCommande"}), @ORM\Index(name="FK_PasserCommande_idPanier", columns={"idPanier"}), @ORM\Index(name="IDX_3EF6F3DC5D419CCB", columns={"idUser"})})
  * @ORM\Entity
  */
 class Passercommande
@@ -20,16 +20,16 @@ class Passercommande
     private $datecommande;
 
     /**
-     * @var \Appolo\BackOfficeBundle\Entity\Utilisateur
+     * @var \Appolo\BackOfficeBundle\Entity\User
      *
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Appolo\BackOfficeBundle\Entity\Utilisateur")
+     * @ORM\OneToOne(targetEntity="Appolo\BackOfficeBundle\Entity\User")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idUtilisateur", referencedColumnName="idUtilisateur")
+     *   @ORM\JoinColumn(name="idUser", referencedColumnName="idUser")
      * })
      */
-    private $idutilisateur;
+    private $iduser;
 
     /**
      * @var \Appolo\BackOfficeBundle\Entity\Commande
@@ -81,26 +81,26 @@ class Passercommande
     }
 
     /**
-     * Set idutilisateur
+     * Set iduser
      *
-     * @param \Appolo\BackOfficeBundle\Entity\Utilisateur $idutilisateur
+     * @param \Appolo\BackOfficeBundle\Entity\User $iduser
      * @return Passercommande
      */
-    public function setIdutilisateur(\Appolo\BackOfficeBundle\Entity\Utilisateur $idutilisateur)
+    public function setIduser(\Appolo\BackOfficeBundle\Entity\User $iduser)
     {
-        $this->idutilisateur = $idutilisateur;
+        $this->iduser = $iduser;
 
         return $this;
     }
 
     /**
-     * Get idutilisateur
+     * Get iduser
      *
-     * @return \Appolo\BackOfficeBundle\Entity\Utilisateur 
+     * @return \Appolo\BackOfficeBundle\Entity\User
      */
-    public function getIdutilisateur()
+    public function getIduser()
     {
-        return $this->idutilisateur;
+        return $this->iduser;
     }
 
     /**
